@@ -1,0 +1,35 @@
+baseURL = "https://deonarine.com/"
+languageCode = "en-us"
+title = "Ajay"
+theme = "hugo-goa"
+
+## Site Settings
+[params]
+author = "Ajay Deonarine"
+intro = "Data Scientist / Programmer / Actuary"
+authorimage = "circle.jpg"
+dateformat = "Jan 2, 2022"
+
+## Site Meta Settings
+[params.meta]
+keywords = "machine,learning,developer,python,actuary"
+
+## Social Accounts
+[params.social]
+github = "ajay-d"
+hackernews = "ajay-d"
+email = "ajay@deonarine.com"
+
+[[menu.main]]
+    name = "about"
+    weight = 200
+    url = "/about/"
+
+## Extras
+[params.extra]
+copyright = "© 2022. Ajay Deonarine. [Some Rights Reserved](http://creativecommons.org/licenses/by/3.0/)."
+rss = false
+poweredby = false
+highlightjs = false
+socialmarkup = false
+displayrssicon = false
