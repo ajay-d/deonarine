@@ -1,4 +1,4 @@
-baseURL = "https://deonarine.com/"
+baseURL = "/"
 languageCode = "en-us"
 title = "Ajay"
 theme = "hugo-goa"
