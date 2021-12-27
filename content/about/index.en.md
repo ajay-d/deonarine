@@ -8,7 +8,8 @@ lightgallery: true
 math:
   enable: true
 ---
-
+{{< date >}}  
+{{< time >}}
 ### Main
 Father, Husband, Data Scientist, Programmer, Actuary  
 Working in the insurance industry  
@@ -18,5 +19,7 @@ Brooklyn
 * bayes
 * python
 * devops
-### Partner
+### Partner :kissing_heart:
 * [brooke](https://www.brookedeonarine.com/)
+
+<!--- powered by ![](/images/cf-logo-v-rgb-rev.png)--->
