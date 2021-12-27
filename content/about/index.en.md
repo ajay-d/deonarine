@@ -9,10 +9,14 @@ math:
   enable: true
 ---
 
-### About
-Father, Husband, Data Scientist, Programmer, Actuary
-### Interested in 
+### Main
+Father, Husband, Data Scientist, Programmer, Actuary  
+Working in the insurance industry  
+Brooklyn
+### Interests 
 * machine learning
 * bayes
 * python
 * devops
+### Partner
+* [brooke](https://www.brookedeonarine.com/)

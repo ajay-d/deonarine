@@ -32,7 +32,7 @@ theme = "LoveIt"
       # LoveIt CHANGED | 0.2.7 title shown in home page (HTML format is supported)
       title = ""
       # subtitle shown in home page
-      subtitle = "Just a simple static site"
+      subtitle = "Father, Husband, Data Scientist"
       # whether to use typeit animation for subtitle
       typeit = true
       # whether to show social links
@@ -48,8 +48,7 @@ theme = "LoveIt"
   # Social config about the author
   [params.social]
     GitHub = "ajay-d"
-    Linkedin = ""
-    Pinterest = ""
+    Linkedin = "ajay-deonarine-a32222214"
     #Reddit = ""
     Spotify = "deonarine"
     Hackernews = "ajay-d"
