@@ -1,35 +1,71 @@
-baseURL = "/"
-languageCode = "en-us"
+baseURL = "http://deonarine.com/"
+defaultContentLanguage = "en"
+# language code
+languageCode = "en"
 title = "Ajay"
-theme = "hugo-goa"
 
-## Site Settings
+# Change the default theme to be use when building the site with Hugo
+theme = "LoveIt"
+
 [params]
-author = "Ajay Deonarine"
-intro = "Data Scientist / Programmer / Actuary"
-authorimage = "circle.jpg"
-dateformat = "Jan 2, 2022"
+  # LoveIt theme version
+  version = "0.2.X"
+  # site default theme ("light", "dark", "auto")
+  defaultTheme = "dark"
+  dateFormat = "01-01-2022"
+  [params.header]
+    desktopMode = "fixed"
+    # mobile header mode ("fixed", "normal", "auto")
+    mobileMode = "auto"
+  [params.header.title]
+    # URL of the LOGO
+    logo = ""
+    # title name
+    name = "Ajay's Home"
+# Home page config
+  [params.home]
+    # Home page profile
+    [params.home.profile]
+      enable = true
+      # URL of avatar shown in home page
+      avatarURL = "/images/circle.jpg"
+      # LoveIt CHANGED | 0.2.7 title shown in home page (HTML format is supported)
+      title = ""
+      # subtitle shown in home page
+      subtitle = "Just a simple static site"
+      # whether to use typeit animation for subtitle
+      typeit = true
+      # whether to show social links
+      social = true
+      # LoveIt NEW | 0.2.0 disclaimer (HTML format is supported)
+      disclaimer = ""
+    # Home page posts
+    [params.home.posts]
+      enable = false
+  [params.footer]
+    enable = false
 
-## Site Meta Settings
-[params.meta]
-keywords = "machine,learning,developer,python,actuary"
+  # Social config about the author
+  [params.social]
+    GitHub = "ajay-d"
+    Linkedin = ""
+    Pinterest = ""
+    #Reddit = ""
+    Spotify = "deonarine"
+    Hackernews = "ajay-d"
+    Email = "ajay@deonarine.com"
 
-## Social Accounts
-[params.social]
-github = "ajay-d"
-hackernews = "ajay-d"
-email = "ajay@deonarine.com"
 
-[[menu.main]]
-    name = "about"
-    weight = 200
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
     url = "/about/"
+    # title will be shown when you hover on this menu link
+    title = "About me"
+    weight = 1
 
-## Extras
-[params.extra]
-copyright = "© 2022. Ajay Deonarine. [Some Rights Reserved](http://creativecommons.org/licenses/by/3.0/)."
-rss = false
-poweredby = false
-highlightjs = false
-socialmarkup = false
-displayrssicon = false
+# Author config
+[author]
+  name = "Ajay Deonarine"
+  email = "ajay@deonarine.com"
