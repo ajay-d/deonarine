@@ -26,7 +26,7 @@
   postData("https://ai.deonarine.com", { prompt: user_prompt }).then((data) => {
     console.log(data);
   });
-  const content = await postData("https://ai.deonarine.com", { prompt: user_prompt }).json();
+  const content = await postData("https://ai.deonarine.com", { prompt: user_prompt });
 
   document.getElementById('output').innerHTML = JSON.stringify(content.response);
 
