@@ -22,13 +22,14 @@
   return response.json();
 
   }
-  var user_prompt = document.getElementById('user_input');
-  postData("https://ai.deonarine.com", { prompt: user_prompt }).then((data) => {
-    console.log(data);
-  });
-  const content = await postData("https://ai.deonarine.com", { prompt: user_prompt });
 
-  document.getElementById('output').innerHTML = JSON.stringify(content.response);
+  async function submitPrompt() {
+  
+    var user_prompt = document.getElementById('user_input');
+    const content = await postData("https://ai.deonarine.com", { prompt: user_prompt });
+    document.getElementById('output').innerHTML = content.response;
+
+  }
 
 </script>
 
