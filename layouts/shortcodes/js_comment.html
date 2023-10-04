@@ -1,0 +1,54 @@
+<form onsubmit="myFunction();return false" id="theform">
+    <h3>Questions? Thoughts? Generate a Comment to this Post!</h3><br>
+      Enter Name:<br> <input type="text" id="author" style="display:table-cell; width:100%">
+      <br><br>
+      Enter a Title for Later Reference:<br> <input type="text" id="title" style="display:table-cell; width:100%">
+      <br><br>
+      If Applicable, Enter Reply Reference: <br>
+      <input type="text" id="replyto" style="display:table-cell; width:100%">
+      <br><br>
+      Enter Comment: <br>
+      <textarea rows="7" id="comment" style="display:table-cell; width:100%"></textarea>
+      <br><br>  
+      <input type="submit" value="Generate Comment!">
+    </form> 
+    
+    <script>
+    myFunction = function() {
+    var author = document.getElementById("author");
+    var title = document.getElementById("title");
+    var replyto = document.getElementById("replyto");
+    var comment = document.getElementById("comment");
+    
+    var author = author.value==="" ? "Anonymous" : author.value;
+    var title = title.value==="" ? ">Title: Untitled" : ">Title: " + title.value;
+    var replyto = replyto.value==="" ? "" : "<br>>In reply to: " + replyto.value;
+    var comment = comment.value.replace(/(\r\n|\n|\r)/gm, "\n>");
+    
+    var currentdate = new Date(); 
+    var tz = new Date().toString().match(/([A-Z]+[\+-][0-9]+)/)[1];
+    var datetime = currentdate.getDate() + "/"
+                    + (currentdate.getMonth()+1)  + "/" 
+                    + currentdate.getFullYear() + ", "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":" 
+                    + currentdate.getSeconds() + " ("
+                    + tz + ")";
+    
+    var message = "Hi Conrad,<br><br>I would like the following comment to be \
+    added to your post at the URL:<br><em>" + window.location + "</em><br><br>\
+    " + "Thanks,<br>" + author + "<br><br>" + 
+    "***********************************************************************************************<br><br>" + 
+            ">On " + datetime + " " + author + " wrote: " + replyto + "<br>" +
+            title + "<br>" + "><br>>" + comment + "<br><br>" +
+    "***********************************************************************************************<br><br>\
+    <strong>Please send this message as an email to<br>\
+    <a href='mailto:conrad.borchers@oii.ox.ac.uk?subject=Blog Post Comment'>conrad.borchers@oii.ox.ac.uk</a><br>or via <a href='https://twitter.com/conradborchers'>Twitter @conradborchers</a></strong>";
+    document.getElementById("answer").innerHTML=message;
+    var form = document.getElementById('theform');
+    form.style.display = 'none';
+    var out = document.getElementById("answer");
+    out.style.display = "block";
+    }
+    </script>
+    <br><pre><code id="answer"></code></pre>

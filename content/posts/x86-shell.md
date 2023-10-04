@@ -2,6 +2,7 @@
 title: "x86 Shell"
 date: 2023-09-21T10:31:38-04:00
 draft: false
+linkToMarkdown: false
 ---
 
 ## Setup shell shortcuts
