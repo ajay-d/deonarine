@@ -1,0 +1,61 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <textarea id="output1" cols="100" rows="35"></textarea>
+
+    <script>
+        const valor1 = {
+            "kisiler": [
+                {
+                    "ad": "Ahmet",
+                    "soyad": "Koç",
+                    "yas": 37,
+                    "emekli": false,
+                    "maas": null,
+                    "hobi": ["müzik", "spor", "resim"]
+                },
+                {
+                    "ad": "Ümit",
+                    "soyad": "Öztürk",
+                    "yas": 36,
+                    "emekli": false,
+                    "maas": 7500,
+                    "hobi": ["kaligrafi", "spor", "müzik"]
+                }
+            ]
+        };
+
+        document.getElementById('output1').innerHTML = JSON.stringify(valor1, null, 4);
+    </script>
+
+
+    <form>
+        <textarea id="txt1"></textarea>
+        <input type="button" value="Insert some text" onclick="submitPrompt();">
+    </form>
+
+    <script>
+        function submitPrompt() {
+            const valor2 = {
+                "kisiler": [
+                    {
+                        "ad": "Ahmet",
+                        "soyad": "Koç"
+                    }
+                ]
+            };
+            //return valor2;
+            document.getElementById('output2').innerHTML = JSON.stringify(valor2, null, 4);
+        }
+
+        
+    </script>
+
+    <textarea id="output2" cols="100" rows="35"></textarea>
+
+</body>
+
+</html>

@@ -6,6 +6,11 @@ draft: true
 
 ## Jamstack
 Playing with Cloudflare's [Jamstack](https://www.cloudflare.com/learning/performance/what-is-jamstack/) setup.
+Basically having my static site, but with dynamic content.  
 
-{{< text_input >}} 
+The [CF variables](https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties) give lots of fun details about the vistor.
+The bot management varibles are described here:https://developers.cloudflare.com/bots/reference/bot-management-variables/
+
+
+{{< cf_display >}} 
 
