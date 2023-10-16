@@ -1,0 +1,82 @@
+<form onsubmit="getCF();return false" id="text_input">
+    <h3>Try this LLM from your browser</h3><br>
+      Enter Prompt: <br>
+      <textarea rows="7" id="user_input" style="display:table-cell; width:100%"></textarea>
+      <br><br>  
+      <input type="submit" value="Fetch Result">
+    </form> 
+
+
+<script>
+
+  async function postData(url = "", data = {}) {
+    
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
+    });
+
+  //return response.json();
+  document.getElementById('output').innerHTML = JSON.stringify(response, null, 4);
+
+  }
+
+  async function getDataTest(url = "") {
+    
+    const response = await fetch(url, {
+      method: "GET",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+  //return response.json();
+  //document.getElementById('output').innerHTML = JSON.stringify(response, null, 4);
+  document.getElementById('output').innerHTML =  "Ajay" + JSON.stringify(response, null, 4);
+
+  }
+
+  async function getData(url = "") {
+    
+    const response = await fetch(url, {
+      method: "GET",
+      mode: "cors",
+      //referrerPolicy: "origin",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    console.log(response)
+  //return response.json();
+  //document.getElementById('output').innerHTML = JSON.stringify(response, null, 4);
+  document.getElementById('output').innerHTML =  "Ajay" + JSON.stringify(response, null, 4);
+
+  }
+
+  async function submitPrompt() {
+  
+    var user_prompt = document.getElementById('user_input');
+    const content = await postData("https://llm.deonarine.com", { prompt: user_prompt });
+
+    //document.getElementById('output').innerHTML = content.response;
+    document.getElementById('output').innerHTML = JSON.stringify(content, null, 4);
+
+  }
+
+  async function getCF() {
+  
+  const content = await getData("https://ai.deonarine.com");
+  //document.getElementById('output').innerHTML = JSON.stringify(content, null, 4);
+  //document.getElementById('output').innerHTML = content.response;
+
+  }
+
+</script>
+
+<br><br>  
+
+<textarea rows="7" id="output" style="display:table-cell; width:100%"></textarea>
