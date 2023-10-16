@@ -9,7 +9,7 @@ Playing with Cloudflare's [Jamstack](https://www.cloudflare.com/learning/perform
 Basically having my static site, but with dynamic content.  
 
 The [CF variables](https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties) give lots of fun details about the vistor.
-The bot management varibles are described here:https://developers.cloudflare.com/bots/reference/bot-management-variables/
+
 
 {{< cf_display >}} 
 

@@ -12,7 +12,7 @@
         });
         console.log(response)
         const getDataRes = await response.json();
-        document.getElementById('output').innerHTML =  JSON.stringify(getDataRes.response, null, 4);
+        document.getElementById('output').innerHTML =  JSON.stringify(getDataRes, null, 4);
 
       }
     </script>
