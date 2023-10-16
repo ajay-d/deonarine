@@ -19,4 +19,4 @@ curl -X POST https://ai.deonarine.com/ -d '{"prompt":"Write a poem that talks ab
 Technically the API endpoint is a different origin than this website.  So I had deal with a bunch of CORS bullshit to get it working...
 
 The endpoint also handles GETs, so you can visit it directly
-(http://ai.deonarine.com)
+(https://ai.deonarine.com)
