@@ -1,6 +1,6 @@
 ---
 title: "LLMs at the Edge"
-date: 2023-10-08T14:46:33-04:00
+date: 2023-10-16T14:46:33-04:00
 draft: false
 ---
 
@@ -17,3 +17,6 @@ curl -X POST https://ai.deonarine.com/ -d '{"prompt":"Write a poem that talks ab
 ```
 
 Technically the API endpoint is a different origin than this website.  So I had deal with a bunch of CORS bullshit to get it working...
+
+The endpoint also handles GETs, so you can visit it directly
+(http://ai.deonarine.com)
