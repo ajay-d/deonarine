@@ -7,7 +7,9 @@ draft: false
 Been playing with Cloudflare's AI Workers.
 One can set up a LLM deployed on their CDN, which leads to some pretty fast response times.
 
-This is a 7B Llama 2 model
+This is a 7B Llama 2 model.  Don't worry, I'm not logging / saving any queries.
+😉
+
 {{< text_input >}}
 
 You can also curl directly to my endpoint:
@@ -18,5 +20,5 @@ curl -X POST https://ai.deonarine.com/ -d '{"prompt":"Write a poem that talks ab
 
 Technically the API endpoint is a different origin than this website.  So I had deal with a bunch of CORS bullshit to get it working...
 
-The endpoint also handles GETs, so you can visit it directly
-(https://ai.deonarine.com)
+The endpoint also handles GETs, so you can visit the endpoint directly (with a bit of dynamicism)
+[ai.deonarine.com](https://ai.deonarine.com)
