@@ -1,0 +1,76 @@
+
+  <head>
+    <script type="text/javascript">
+        async function submitPrompt() {
+        
+        var user_prompt = document.getElementById('user_input');
+        const content = await postData("https://workers-embedding.deonarine.workers.dev/", { prompt: user_prompt.value });
+
+        }
+
+        async function postData(url = "", data = {}) {
+            console.log(JSON.stringify(data));
+            const response = await fetch(url, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+            });
+            //console.log(response)
+            const postDataRes = await response.json();
+            console.log(postDataRes);
+
+        }
+    </script>
+    
+  </head>
+  <body>
+    <form onsubmit="" id="text_input">
+        Enter Prompt: <br>
+        <textarea rows="7" id="user_input" style="display:table-cell; width:100%"></textarea>
+        <br><br>  
+        <input type="submit" value="Fetch Result">
+        <br><br>  
+      </form> 
+  </body>
+
+  <body>
+    <table id = "tablestatic">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>height</th>
+            <th>place</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Monte Falco</td>
+            <td>1658</td>
+            <td>Parco Foreste Casentinesi</td>
+        </tr>
+        <tr>
+            <td>Monte Falterona</td>
+            <td>1654</td>
+            <td>Parco Foreste Casentinesi</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table id = "tableauto">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>height</th>
+            <th>place</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+  </body>
+
+  <script src="/js/build-table2.js"></script>

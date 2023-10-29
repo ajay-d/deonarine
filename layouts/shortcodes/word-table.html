@@ -1,0 +1,75 @@
+
+<head>
+    <script type="text/javascript">
+        async function submitPrompt() {
+        
+        var user_prompt = document.getElementById('user_input');
+        const content = await postData("https://workers-embedding.deonarine.workers.dev/", { prompt: user_prompt.value });
+        console.log("Content" + content);
+        }
+
+        async function postData(url = "", data = {}) {
+            console.log(JSON.stringify(data));
+            const response = await fetch(url, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+            });
+            //console.log(response)
+            const postDataRes = await response.json();
+            console.log(postDataRes);
+
+            //var table = document.getElementById('wordTable');
+            var table = document.getElementById('wordTable').getElementsByTagName('tbody')[0];
+            let wordDataKeys = Object.keys(postDataRes[1]);
+            for (let element of wordDataKeys) {
+                table.deleteRow(-1);
+            }
+
+            for (let element of wordDataKeys) {
+                let row = table.insertRow();
+                console.log("Elm " + element); 
+                //postDataRes[1][element].push({SCORE: 1});
+                postDataRes[1][element].SCORE = postDataRes[0][element];
+                console.log(postDataRes[1][element]);
+                for (let key of ['WORD', 'SCORE', 'MEANING']) {
+                    //console.log("Key " + key); 
+                    let cell = row.insertCell();
+                    //console.log("Table " + postDataRes[1][element]['ID']); 
+                    let text = document.createTextNode(postDataRes[1][element][key]);
+                    cell.appendChild(text);
+                }
+            }
+        }
+
+    </script>
+    
+  </head>
+  <body>
+    <form onsubmit="submitPrompt(); return false" id="text_input">
+        Enter Prompt: <br>
+        <textarea rows="7" id="user_input" style="display:table-cell; width:100%"></textarea>
+        <br><br>  
+        <input type="submit" value="Fetch Matches">
+        <br><br>  
+      </form> 
+  </body>
+
+  <body>
+
+    <table id = "wordTable">
+        <thead>
+        <tr>
+            <th>word</th>
+            <th>score</th>
+            <th>definition</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+  </body>
