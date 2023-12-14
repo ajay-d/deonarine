@@ -7,7 +7,7 @@ draft: false
 One of the more interesting by products of LLMs is the embedding vector.  I read awhile back about others using embedding vectors to create reverse dictionaries.  
 
 I think it's a great demonstration of the power and function of these embeddings.  I decided to try my own hand at it, using Cloudflare's vector database, I made my own "reverse dictionary" or semantic thesaurus.  
-* I sourced some word lists / SAT prep material
+* I sourced some word / definition lists
 * Pre-embed the definitions to a [1024 dim vector](https://huggingface.co/BAAI/bge-large-en-v1.5)
 * Used [D1](https://developers.cloudflare.com/d1/) to store my words and [Vectorize](https://developers.cloudflare.com/vectorize/) as my vector database
 * I embed the inputs at my endpoint and retrieve the cosine similar results

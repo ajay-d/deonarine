@@ -1,0 +1,81 @@
+<br><br>
+
+<form onsubmit="submitPrompt();return false" id="text_input">
+      Enter Instruct:
+      <textarea rows="1" id="user_instruct" style="display:table-cell; width:100%"></textarea>
+      <br><br>  
+       Enter Prompt: <br>
+      <textarea rows="7" id="user_input" style="display:table-cell; width:100%"></textarea>
+      <br><br>  
+      <input type="submit" value="Fetch Result">
+    </form> 
+
+<script>
+
+  // async function postData(url = "https://workers-mistral.deonarine.workers.dev/", data = {}) {
+  //   console.log(JSON.stringify(data));
+  //   const response = await fetch(url, {
+  //     method: "POST",
+  //     mode: "no-cors",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
+  //   //console.log(response)
+  //   //const postDataRes = await response.json();
+  //   //console.log(postDataRes)
+  //   //const stripQuotes = val => val.replace(/"/g, "");
+  //   //document.getElementById('output').innerHTML =  JSON.stringify(postDataRes.response, null, 4);
+  //   //document.getElementById('output').innerHTML =  stripQuotes(postDataRes.response);
+  //   const source = new EventSource("https://workers-mistral.deonarine.workers.dev/"); // Workers AI streaming endpoint
+  //   source.onmessage = (event) => {
+  //     if (event.data == "[DONE]") {
+  //       source.close();
+  //       return;
+  //     }
+  //   const data = JSON.parse(event.data);
+  //   console.log(data.response)
+  //   document.getElementById('output').innerHTML += data.response;
+  //   }
+
+  // }
+  
+  async function submitPrompt() {
+  
+  var user_input = document.getElementById('user_input');
+  var user_instruct = document.getElementById('user_instruct');
+  document.getElementById('output').innerHTML = "";
+  
+  console.log(user_input.value)
+  // const source = new SSE("https://workers-mistral.deonarine.workers.dev/", {headers: {'Content-Type': 'text/plain',
+  //                                                                                      'payload': user_prompt.value},
+  //                          method: 'POST'});
+
+  // const content = await postData("https://workers-mistral.deonarine.workers.dev/", { prompt: user_prompt.value });
+
+  let url = new URL("https://workers-mistral.deonarine.workers.dev/");
+  const params = new URLSearchParams({ user_input: user_input.value, user_instruct: user_instruct.value }).toString();
+  
+  console.log(params)
+
+  const source = new EventSource("https://workers-mistral.deonarine.workers.dev?"+params); // Workers AI streaming endpoint
+  source.onmessage = (event) => {
+    if (event.data == "[DONE]") {
+      source.close();
+      return;
+    }
+    const data = JSON.parse(event.data);
+    console.log(data.response)
+    document.getElementById('output').innerHTML += data.response;
+  }
+
+  //const content = await postData("https://workers-mistral.deonarine.workers.dev/", { prompt: user_prompt.value });
+
+  }
+
+</script>
+
+<br><br>  
+
+<textarea rows="10" id="output" style="display:table-cell; width:100%; white-space:pre-line;"></textarea>
