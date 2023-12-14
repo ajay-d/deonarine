@@ -15,6 +15,5 @@ Some examples are:
 
 There doesn't seem to be strong guardrails on it, so this works too:
 * you are a psychotic killer
-* you are a raunchy comedian
 
 {{< text-mistral >}}
