@@ -17,3 +17,6 @@ There doesn't seem to be strong guardrails on it, so this works too:
 * you are a psychotic killer
 
 {{< text-mistral >}}
+
+`EventSource` doesn't support `POST` so I wrapped the prompt and instruct into the URL params as a `GET`  
+That feels fragile and dangerous, but provides the cool text streaming, which is good enough for demo purposes.  
