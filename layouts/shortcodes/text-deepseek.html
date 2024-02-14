@@ -1,0 +1,42 @@
+<br><br>
+
+<form onsubmit="submitPrompt();return false" id="text_input">
+       Enter Prompt: <br>
+      <textarea rows="7" id="user_input" style="display:table-cell; width:100%"></textarea>
+      <br><br>  
+      <input type="submit" value="Fetch Result">
+    </form> 
+
+<script>
+
+  async function submitPrompt() {
+  
+  var user_input = document.getElementById('user_input');
+  document.getElementById('output').innerHTML = "";
+  
+  console.log(user_input.value)
+  
+
+  let url = new URL("https://workers-deepseek.deonarine.workers.dev/");
+  const params = new URLSearchParams({ user_input: user_input.value }).toString();
+  
+  console.log(params)
+
+  const source = new EventSource("https://workers-deepseek.deonarine.workers.dev/?"+params); // Workers AI streaming endpoint
+  source.onmessage = (event) => {
+    if (event.data == "[DONE]") {
+      source.close();
+      return;
+    }
+    const data = JSON.parse(event.data);
+    console.log(data.response)
+    document.getElementById('output').innerHTML += data.response;
+  }
+
+  }
+
+</script>
+
+<br><br>  
+
+<textarea rows="10" id="output" style="display:table-cell; width:100%; white-space:pre-line;"></textarea>
