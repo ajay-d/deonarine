@@ -1,10 +1,96 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Ajay</title>
-        <link>http://deonarine.com/</link>
-        <description>Ajay</description>
+        <link>http://localhost:1313/</link>
+        <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ajay@deonarine.com (Ajay Deonarine)</managingEditor>
-            <webMaster>ajay@deonarine.com (Ajay Deonarine)</webMaster>
-            <atom:link href="http://deonarine.com/index.xml" rel="self" type="application/rss+xml" />
-        </channel>
+            <webMaster>ajay@deonarine.com (Ajay Deonarine)</webMaster><lastBuildDate>Sun, 11 Aug 2024 11:26:12 -0400</lastBuildDate>
+            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Rag Genius</title>
+    <link>http://localhost:1313/posts/rag-genius/</link>
+    <pubDate>Sun, 11 Aug 2024 11:26:12 -0400</pubDate>
+    <author>Ajay Deonarine</author>
+    <guid>http://localhost:1313/posts/rag-genius/</guid>
+    <description><![CDATA[Llama 3.1 was released with an expanded context window length of 128K.
+This is great for RAG applications. Here I feed into the prompt lyrics pulled from some popular rappers, and have the model generate new lyrics in the same style.
+The lyrics are stored in D1 so the lyrics generation happens server side.
+The RAG part embeds the topic to filter down the sample example lyrics.
+Gucci Mane Rick Ross Drake Future Pop Smoke Lil Baby Meek Mill 21 Savage Enter Topic / Theme / Subject area for songs: Generate Lyrics ]]></description>
+</item>
+<item>
+    <title>Deepseek Code</title>
+    <link>http://localhost:1313/posts/deepseek-code/</link>
+    <pubDate>Wed, 14 Feb 2024 09:09:39 -0500</pubDate>
+    <author>Ajay Deonarine</author>
+    <guid>http://localhost:1313/posts/deepseek-code/</guid>
+    <description><![CDATA[DeepSeek Coder is composed of a series of code language models, each trained from scratch on 2T tokens. This is a 6.7B model version.
+Supported languages: ['ada', 'agda', 'alloy', 'antlr', 'applescript', 'assembly', 'augeas', 'awk', 'batchfile', 'bluespec', 'c', 'c-sharp', 'clojure', 'cmake', 'coffeescript', 'common-lisp', 'cpp', 'css', 'cuda', 'dart', 'dockerfile', 'elixir', 'elm', 'emacs-lisp', 'erlang', 'f-sharp', 'fortran', 'glsl', 'go', 'groovy', 'haskell', 'html', 'idris', 'isabelle', 'java', 'java-server-pages', 'javascript', 'json', 'julia', 'jupyter-notebook', 'kotlin', 'lean', 'literate-agda', 'literate-coffeescript', 'literate-haskell', 'lua', 'makefile', 'maple', 'markdown', 'mathematica', 'matlab', 'ocaml', 'pascal', 'perl', 'php', 'powershell', 'prolog', 'protocol-buffer', 'python', 'r', 'racket', 'restructuredtext', 'rmarkdown', 'ruby', 'rust', 'sas', 'scala', 'scheme', 'shell', 'smalltalk', 'solidity', 'sparql', 'sql', 'stan', 'standard-ml', 'stata', 'systemverilog', 'tcl', 'tcsh', 'tex', 'thrift', 'typescript', 'verilog', 'vhdl', 'visual-basic', 'xslt', 'yacc', 'yaml', 'zig']]]></description>
+</item>
+<item>
+    <title>Mistral Demo</title>
+    <link>http://localhost:1313/posts/mistral-demo/</link>
+    <pubDate>Wed, 13 Dec 2023 13:39:18 -0500</pubDate>
+    <author>Ajay Deonarine</author>
+    <guid>http://localhost:1313/posts/mistral-demo/</guid>
+    <description><![CDATA[Here&rsquo;s a demo of the Minstral Instruct 7B model (Mistral-7B-v0.1-instruct). This model outperforms all 13B models and many 34B models.
+First enter an Instruct
+Some examples are:
+you are a friendly assistant you are a empathetic therapist you are a shopping assistant There doesn&rsquo;t seem to be strong guardrails on it, so this works too:
+you are a psychotic killer Enter Instruct: Enter Prompt: EventSource doesn&rsquo;t support POST so I wrapped the prompt and instruct into the URL params as a GET]]></description>
+</item>
+<item>
+    <title>Reverse Dictionary</title>
+    <link>http://localhost:1313/posts/reverse-dictionary/</link>
+    <pubDate>Sun, 29 Oct 2023 17:24:56 -0400</pubDate>
+    <author>Ajay Deonarine</author>
+    <guid>http://localhost:1313/posts/reverse-dictionary/</guid>
+    <description><![CDATA[One of the more interesting by products of LLMs is the embedding vector. I read awhile back about others using embedding vectors to create reverse dictionaries.
+I think it&rsquo;s a great demonstration of the power and function of these embeddings. I decided to try my own hand at it, using Cloudflare&rsquo;s vector database, I made my own &ldquo;reverse dictionary&rdquo; or semantic thesaurus.
+I sourced some word / definition lists Pre-embed the definitions to a 1024 dim vector Used D1 to store my words and Vectorize as my vector database I embed the inputs at my endpoint and retrieve the cosine similar results The vector DB runs the (approximate) nearest neighbors search, which is non-trivial, and surprisingly fast You can input anything, a definition, collections of feelings, a paragraph, a poem, and the results will be some words that best match that semantic meaning.]]></description>
+</item>
+<item>
+    <title>LLMs at the Edge</title>
+    <link>http://localhost:1313/posts/llm-edge/</link>
+    <pubDate>Mon, 16 Oct 2023 14:46:33 -0400</pubDate>
+    <author>Ajay Deonarine</author>
+    <guid>http://localhost:1313/posts/llm-edge/</guid>
+    <description><![CDATA[Been playing with Cloudflare&rsquo;s AI Workers. One can set up a LLM deployed on their CDN, which leads to some pretty fast response times.
+This is a 7B Llama 2 model. Don&rsquo;t worry, I&rsquo;m not logging / saving any queries. 😉
+Enter Prompt: You can also curl directly to my endpoint:
+curl -X POST https://ai.deonarine.com/ -d &#39;{&#34;prompt&#34;:&#34;Write a poem that talks about Brooklyn&#34;}&#39; Technically the API endpoint is a different origin than this website.]]></description>
+</item>
+<item>
+    <title>Cloudflare Jamstack</title>
+    <link>http://localhost:1313/posts/cloudflare-jamstack/</link>
+    <pubDate>Wed, 04 Oct 2023 17:58:14 -0400</pubDate>
+    <author>Ajay Deonarine</author>
+    <guid>http://localhost:1313/posts/cloudflare-jamstack/</guid>
+    <description><![CDATA[Jamstack Playing with Cloudflare&rsquo;s Jamstack setup. Basically having my static site, but with dynamic content.
+The CF variables give lots of fun details about the vistor.]]></description>
+</item>
+<item>
+    <title>Python Apple Silicon</title>
+    <link>http://localhost:1313/posts/python-apple-silicon/</link>
+    <pubDate>Thu, 21 Sep 2023 11:28:31 -0400</pubDate>
+    <author>Ajay Deonarine</author>
+    <guid>http://localhost:1313/posts/python-apple-silicon/</guid>
+    <description><![CDATA[Install x86 dependencies Once you have the shell shortcuts, we can brew install x86 or arm libraries, since they reside in different locations
+Switch to the intel shell and brew86 install the required libraries
+libs=&#34;openssl readline sqlite3 xz zlib gettext&#34; for lib in ${=libs}; do brew86 install $lib done Next, set the compiler and linker flags realine is keg only brew86 info readline
+For compilers to find readline you may need to set: export LDFLAGS=&quot;-L/usr/local/opt/readline/lib&quot; export CPPFLAGS=&quot;-I/usr/local/opt/readline/include&quot;]]></description>
+</item>
+<item>
+    <title>x86 Shell</title>
+    <link>http://localhost:1313/posts/x86-shell/</link>
+    <pubDate>Thu, 21 Sep 2023 10:31:38 -0400</pubDate>
+    <author>Ajay Deonarine</author>
+    <guid>http://localhost:1313/posts/x86-shell/</guid>
+    <description><![CDATA[Setup shell shortcuts You can easily switch to an x86 shell on apple silicon by
+arch -x86_64 zsh Then check the arch
+ajay@Ajays-MacBook-Pro ~ % arch -x86_64 zsh ajay@Ajays-MacBook-Pro ~ % arch i386 As a shortcut, I can switch between x86 or apple silicon terminal editing .zshrc
+alias arm=&#34;env /usr/bin/arch -arm64 /bin/zsh --login&#34; alias intel=&#34;env /usr/bin/arch -x86_64 /bin/zsh --login&#34; Then run arch specifc versions of homebrew or pyenv
+alias brew86=&#34;/usr/local/bin/brew&#34; alias pyenv86=&#34;arch -x86_64 pyenv&#34; You may need to resource the shell after changing source ~/.]]></description>
+</item>
+</channel>
 </rss>

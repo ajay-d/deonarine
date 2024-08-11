@@ -1,0 +1,166 @@
+<style>
+
+    .dropdown_button {
+        background-color: #1e7d0f;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+    }
+   .dropdown_button:hover, .dropbtn:focus {
+        background-color: #157b05bb;
+    }
+
+    .artists {
+        display: none;
+        position: absolute;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .artists li {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        list-style: none;
+        background-color: rgb(47, 47, 47);
+    
+    }
+
+    .artists li a {
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+    }
+
+    .artists li:hover {
+        background-color: #420d50df;
+    }
+
+    .select_button {
+        color: #bae1b3;
+        background-color: #1e7d0f;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+        text-align-last: center;
+    }
+
+    .select_button:hover, .select_button:focus {
+        background-color: #40b02f;
+    }
+
+    .lyric_button {
+        color: #bae1b3;
+        background-color: #2f0c98;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+    }
+   .lyric_button:hover, .lyric_button:focus {
+        background-color: #6346bc;
+    }
+
+</style>
+
+<!-- <button class="dropdown_button" 
+    onclick="show_list()">
+    Rappers
+</button>
+
+<div id="artists_id" class="artists">
+    <li>Gucci Mane</li>
+    <li>Rick Ross</li>
+</div>
+
+
+<script>
+    function show_list() {
+        var artists = document.getElementById("artists_id");
+
+        console.log(artists);
+
+        if (artists.style.display == "block") {
+            artists.style.display = "none";
+        } else {
+            artists.style.display = "block";
+        }
+    }
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropdown_button')) {
+            document.getElementById('artists_id').style.display = "none";
+        }
+    }    
+</script> -->
+
+<select id="myDropdown", class="select_button">
+    <option value="Gucci Mane">Gucci Mane</option>
+    <option value="Rick Ross">Rick Ross</option>
+    <option value="Drake">Drake</option>
+    <option value="Future">Future</option>
+    <option value="Pop Smoke">Pop Smoke</option>
+    <option value="Lil Baby">Lil Baby</option>
+    <option value="Meek Mill">Meek Mill</option>
+    <option value="21 Savage">21 Savage</option>
+</select>
+  
+<script>
+    const dropdown = document.getElementById("myDropdown");
+
+    dropdown.addEventListener("change", () => {
+        const selectedValue = dropdown.value;
+        console.log("Selected value:", selectedValue);
+    });
+
+</script>
+
+<br><br>
+
+Enter Topic / Theme / Subject area for songs:
+<textarea rows="1" id="topic" style="display:table-cell; width:100%"></textarea>
+
+<br><br>
+
+<button id="generate", onclick="generateLyrics()", class="lyric_button">Generate Lyrics</button>
+
+<script>
+
+  async function generateLyrics() {
+  
+  var selectedArtist = dropdown.value;
+  var topicValue = document.getElementById('topic').value;
+
+  document.getElementById('output').innerHTML = "";
+  
+  console.log("Generate Lyrics for: ", selectedArtist)
+  
+  const params = new URLSearchParams({ userArtist: selectedArtist, userTopic: topicValue }).toString();
+  
+  console.log(params)
+
+  const source = new EventSource("https://workers-rag-genius.deonarine.workers.dev/?"+params); // Workers AI streaming endpoint
+  source.onmessage = (event) => {
+    if (event.data == "[DONE]") {
+      source.close();
+      return;
+    }
+    const data = JSON.parse(event.data);
+    console.log(data.response)
+    document.getElementById('output').innerHTML += data.response;
+  }
+
+  }
+
+</script>
+
+<br><br>  
+
+<textarea rows="10" id="output" style="display:table-cell; width:100%; white-space:pre-line;"></textarea>

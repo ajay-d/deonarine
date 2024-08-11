@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Reverse Dictionary - Ajay</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="http://localhost:1313/posts/reverse-dictionary/">
+  <meta property="og:site_name" content="Ajay">
+  <meta property="og:title" content="Reverse Dictionary">
+  <meta property="og:description" content="One of the more interesting by products of LLMs is the embedding vector. I read awhile back about others using embedding vectors to create reverse dictionaries.
+I think it’s a great demonstration of the power and function of these embeddings. I decided to try my own hand at it, using Cloudflare’s vector database, I made my own “reverse dictionary” or semantic thesaurus.
+I sourced some word / definition lists Pre-embed the definitions to a 1024 dim vector Used D1 to store my words and Vectorize as my vector database I embed the inputs at my endpoint and retrieve the cosine similar results The vector DB runs the (approximate) nearest neighbors search, which is non-trivial, and surprisingly fast You can input anything, a definition, collections of feelings, a paragraph, a poem, and the results will be some words that best match that semantic meaning.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-10-29T17:24:56-04:00">
+    <meta property="article:modified_time" content="2023-10-29T17:24:56-04:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Reverse Dictionary">
+  <meta name="twitter:description" content="One of the more interesting by products of LLMs is the embedding vector. I read awhile back about others using embedding vectors to create reverse dictionaries.
+I think it’s a great demonstration of the power and function of these embeddings. I decided to try my own hand at it, using Cloudflare’s vector database, I made my own “reverse dictionary” or semantic thesaurus.
+I sourced some word / definition lists Pre-embed the definitions to a 1024 dim vector Used D1 to store my words and Vectorize as my vector database I embed the inputs at my endpoint and retrieve the cosine similar results The vector DB runs the (approximate) nearest neighbors search, which is non-trivial, and surprisingly fast You can input anything, a definition, collections of feelings, a paragraph, a poem, and the results will be some words that best match that semantic meaning.">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/reverse-dictionary/" /><link rel="prev" href="http://localhost:1313/posts/llm-edge/" /><link rel="next" href="http://localhost:1313/posts/mistral-demo/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Reverse Dictionary",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/reverse-dictionary\/"
+        },"genre": "posts","wordcount":  148 ,
+        "url": "http:\/\/localhost:1313\/posts\/reverse-dictionary\/","datePublished": "2023-10-29T17:24:56-04:00","dateModified": "2023-10-29T17:24:56-04:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Ajay Deonarine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ajay">Ajay&#39;s Home</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="Musings"> Posts </a><a class="menu-item" href="/about/" title="About me"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ajay">Ajay&#39;s Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="Musings">Posts</a><a class="menu-item" href="/about/" title="About me">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Reverse Dictionary</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ajay Deonarine</a></span></div>
+            <div class="post-meta-line">
+                <i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Oct. 29, 2023&nbsp;
+                <i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;148 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="content" id="content"><p>One of the more interesting by products of LLMs is the embedding vector.  I read awhile back about others using embedding vectors to create reverse dictionaries.</p>
+<p>I think it&rsquo;s a great demonstration of the power and function of these embeddings.  I decided to try my own hand at it, using Cloudflare&rsquo;s vector database, I made my own &ldquo;reverse dictionary&rdquo; or semantic thesaurus.</p>
+<ul>
+<li>I sourced some word / definition lists</li>
+<li>Pre-embed the definitions to a <a href="https://huggingface.co/BAAI/bge-large-en-v1.5" target="_blank" rel="noopener noreffer ">1024 dim vector</a></li>
+<li>Used <a href="https://developers.cloudflare.com/d1/" target="_blank" rel="noopener noreffer ">D1</a> to store my words and <a href="https://developers.cloudflare.com/vectorize/" target="_blank" rel="noopener noreffer ">Vectorize</a> as my vector database</li>
+<li>I embed the inputs at my endpoint and retrieve the cosine similar results</li>
+<li>The vector DB runs the (approximate) nearest neighbors search, which is non-trivial, and surprisingly fast</li>
+</ul>
+<hr>
+<p>You can input anything, a definition, collections of feelings, a paragraph, a poem, and the results will be some words that best match that semantic meaning.</p>
+
+<head>
+    <script type="text/javascript">
+        async function submitPrompt() {
+        
+        var user_prompt = document.getElementById('user_input');
+        const content = await postData("https://workers-embedding.deonarine.workers.dev/", { prompt: user_prompt.value });
+        console.log("Content" + content);
+        }
+
+        async function postData(url = "", data = {}) {
+            console.log(JSON.stringify(data));
+            const response = await fetch(url, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+            });
+            
+            const postDataRes = await response.json();
+            console.log(postDataRes);
+
+            
+            var table = document.getElementById('wordTable').getElementsByTagName('tbody')[0];
+            let wordDataKeys = Object.keys(postDataRes[1]);
+            for (let element of wordDataKeys) {
+                table.deleteRow(-1);
+            }
+
+            for (let element of wordDataKeys) {
+                let row = table.insertRow();
+                console.log("Elm " + element); 
+                
+                postDataRes[1][element].SCORE = postDataRes[0][element];
+                console.log(postDataRes[1][element]);
+                for (let key of ['WORD', 'SCORE', 'MEANING']) {
+                    
+                    let cell = row.insertCell();
+                    
+                    let text = document.createTextNode(postDataRes[1][element][key]);
+                    cell.appendChild(text);
+                }
+            }
+        }
+
+    </script>
+    
+  </head>
+  <body>
+    <form onsubmit="submitPrompt(); return false" id="text_input">
+        Enter Prompt: <br>
+        <textarea rows="7" id="user_input" style="display:table-cell; width:100%"></textarea>
+        <br><br>  
+        <input type="submit" value="Fetch Matches">
+        <br><br>  
+      </form> 
+  </body>
+
+  <body>
+
+    <table id = "wordTable">
+        <thead>
+        <tr>
+            <th>word</th>
+            <th>score</th>
+            <th>definition</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+  </body>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/llm-edge/" class="prev" rel="prev" title="LLMs at the Edge"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>LLMs at the Edge</a>
+            <a href="/posts/mistral-demo/" class="next" rel="next" title="Mistral Demo">Mistral Demo<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ajay Deonarine</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

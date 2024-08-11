@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Rag Genius - Ajay</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="http://localhost:1313/posts/rag-genius/">
+  <meta property="og:site_name" content="Ajay">
+  <meta property="og:title" content="Rag Genius">
+  <meta property="og:description" content="Llama 3.1 was released with an expanded context window length of 128K.
+This is great for RAG applications. Here I feed into the prompt lyrics pulled from some popular rappers, and have the model generate new lyrics in the same style.
+The lyrics are stored in D1 so the lyrics generation happens server side.
+The RAG part embeds the topic to filter down the sample example lyrics.
+Gucci Mane Rick Ross Drake Future Pop Smoke Lil Baby Meek Mill 21 Savage Enter Topic / Theme / Subject area for songs: Generate Lyrics ">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-08-11T11:26:12-04:00">
+    <meta property="article:modified_time" content="2024-08-11T11:26:12-04:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Rag Genius">
+  <meta name="twitter:description" content="Llama 3.1 was released with an expanded context window length of 128K.
+This is great for RAG applications. Here I feed into the prompt lyrics pulled from some popular rappers, and have the model generate new lyrics in the same style.
+The lyrics are stored in D1 so the lyrics generation happens server side.
+The RAG part embeds the topic to filter down the sample example lyrics.
+Gucci Mane Rick Ross Drake Future Pop Smoke Lil Baby Meek Mill 21 Savage Enter Topic / Theme / Subject area for songs: Generate Lyrics ">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/rag-genius/" /><link rel="prev" href="http://localhost:1313/posts/deepseek-code/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Rag Genius",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/rag-genius\/"
+        },"genre": "posts","wordcount":  92 ,
+        "url": "http:\/\/localhost:1313\/posts\/rag-genius\/","datePublished": "2024-08-11T11:26:12-04:00","dateModified": "2024-08-11T11:26:12-04:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Ajay Deonarine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ajay">Ajay&#39;s Home</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="Musings"> Posts </a><a class="menu-item" href="/about/" title="About me"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ajay">Ajay&#39;s Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="Musings">Posts</a><a class="menu-item" href="/about/" title="About me">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Rag Genius</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Ajay Deonarine</a></span></div>
+            <div class="post-meta-line">
+                <i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Aug. 11, 2024&nbsp;
+                <i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;92 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="content" id="content"><p>Llama 3.1 was released with an expanded context window length of 128K.<br>
+This is great for RAG applications.  Here I feed into the prompt lyrics pulled from some popular rappers, and have the model generate new lyrics in the same style.</p>
+<p>The lyrics are stored in D1 so the lyrics generation happens server side.</p>
+<p>The <em>RAG</em> part embeds the topic to filter down the sample example lyrics.</p>
+<style>
+
+    .dropdown_button {
+        background-color: #1e7d0f;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+    }
+   .dropdown_button:hover, .dropbtn:focus {
+        background-color: #157b05bb;
+    }
+
+    .artists {
+        display: none;
+        position: absolute;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .artists li {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        list-style: none;
+        background-color: rgb(47, 47, 47);
+    
+    }
+
+    .artists li a {
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+    }
+
+    .artists li:hover {
+        background-color: #420d50df;
+    }
+
+    .select_button {
+        color: #bae1b3;
+        background-color: #1e7d0f;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+        text-align-last: center;
+    }
+
+    .select_button:hover, .select_button:focus {
+        background-color: #40b02f;
+    }
+
+    .lyric_button {
+        color: #bae1b3;
+        background-color: #2f0c98;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+    }
+   .lyric_button:hover, .lyric_button:focus {
+        background-color: #6346bc;
+    }
+
+</style>
+
+
+
+<select id="myDropdown", class="select_button">
+    <option value="Gucci Mane">Gucci Mane</option>
+    <option value="Rick Ross">Rick Ross</option>
+    <option value="Drake">Drake</option>
+    <option value="Future">Future</option>
+    <option value="Pop Smoke">Pop Smoke</option>
+    <option value="Lil Baby">Lil Baby</option>
+    <option value="Meek Mill">Meek Mill</option>
+    <option value="21 Savage">21 Savage</option>
+</select>
+  
+<script>
+    const dropdown = document.getElementById("myDropdown");
+
+    dropdown.addEventListener("change", () => {
+        const selectedValue = dropdown.value;
+        console.log("Selected value:", selectedValue);
+    });
+
+</script>
+
+<br><br>
+
+Enter Topic / Theme / Subject area for songs:
+<textarea rows="1" id="topic" style="display:table-cell; width:100%"></textarea>
+
+<br><br>
+
+<button id="generate", onclick="generateLyrics()", class="lyric_button">Generate Lyrics</button>
+
+<script>
+
+  async function generateLyrics() {
+  
+  var selectedArtist = dropdown.value;
+  var topicValue = document.getElementById('topic').value;
+
+  document.getElementById('output').innerHTML = "";
+  
+  console.log("Generate Lyrics for: ", selectedArtist)
+  
+  const params = new URLSearchParams({ userArtist: selectedArtist, userTopic: topicValue }).toString();
+  
+  console.log(params)
+
+  const source = new EventSource("https://workers-rag-genius.deonarine.workers.dev/?"+params); 
+  source.onmessage = (event) => {
+    if (event.data == "[DONE]") {
+      source.close();
+      return;
+    }
+    const data = JSON.parse(event.data);
+    console.log(data.response)
+    document.getElementById('output').innerHTML += data.response;
+  }
+
+  }
+
+</script>
+
+<br><br>  
+
+<textarea rows="10" id="output" style="display:table-cell; width:100%; white-space:pre-line;"></textarea>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/deepseek-code/" class="prev" rel="prev" title="Deepseek Code"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Deepseek Code</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Ajay Deonarine</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
