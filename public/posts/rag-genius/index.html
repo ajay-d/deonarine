@@ -212,7 +212,7 @@ Enter Topic / Theme / Subject area for songs:
       return;
     }
     const data = JSON.parse(event.data);
-    console.log(data.response)
+    
     document.getElementById('output').innerHTML += data.response;
   }
 
@@ -222,7 +222,8 @@ Enter Topic / Theme / Subject area for songs:
 
 <br><br>  
 
-<textarea rows="10" id="output" style="display:table-cell; width:100%; white-space:pre-line;"></textarea>
+
+<textarea id="output" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
