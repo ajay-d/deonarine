@@ -3,94 +3,461 @@
         <title>Ajay</title>
         <link>http://localhost:1313/</link>
         <description>This is my cool site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ajay@deonarine.com (Ajay Deonarine)</managingEditor>
-            <webMaster>ajay@deonarine.com (Ajay Deonarine)</webMaster><lastBuildDate>Sun, 11 Aug 2024 11:26:12 -0400</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 15 Oct 2024 13:52:18 -0400</lastBuildDate>
             <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Python Disable Gil</title>
+    <link>http://localhost:1313/posts/python-disable-gil/</link>
+    <pubDate>Tue, 15 Oct 2024 13:52:18 -0400</pubDate>
+    <author>Author</author>
+    <guid>http://localhost:1313/posts/python-disable-gil/</guid>
+    <description><![CDATA[<p>Python 3.13 allows users to diable the GIL and experiment with free-threading.  Performance aside, here&rsquo;s how to install it with the GIL disabled (which it isn&rsquo;t by default).</p>
+<p>If you just <code>pyenv install 3.13.0</code>, the GIL will be enabled</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>ajay@Ajays-MacBook-Pro deonarine % python -VV
+</span></span><span style="display:flex;"><span>Python 3.13.0 (main, Oct 15 2024, 14:25:57) [Clang 16.0.0 (clang-1600.0.26.3)]
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>ajay@Ajays-MacBook-Pro deonarine % python
+</span></span></code></pre></div><pre tabindex="0"><code>Python 3.13.0 (main, Oct 15 2024, 14:25:57) [Clang 16.0.0 (clang-1600.0.26.3)] on darwin
+Type &#34;help&#34;, &#34;copyright&#34;, &#34;credits&#34; or &#34;license&#34; for more information.
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys._is_gil_enabled()
+True
+</code></pre><p>You can install with the experimental JIT enabled and disable the GIL with this build flag:</p>]]></description>
+</item>
+<item>
     <title>Rag Genius</title>
     <link>http://localhost:1313/posts/rag-genius/</link>
     <pubDate>Sun, 11 Aug 2024 11:26:12 -0400</pubDate>
-    <author>Ajay Deonarine</author>
+    <author>Author</author>
     <guid>http://localhost:1313/posts/rag-genius/</guid>
-    <description><![CDATA[Llama 3.1 was released with an expanded context window length of 128K.
-This is great for RAG applications. Here I feed into the prompt lyrics pulled from some popular rappers, and have the model generate new lyrics in the same style.
-The lyrics are stored in D1 so the lyrics generation happens server side.
-The RAG part embeds the topic to filter down the sample example lyrics.
-Gucci Mane Rick Ross Drake Future Pop Smoke Lil Baby Meek Mill 21 Savage Enter Topic / Theme / Subject area for songs: Generate Lyrics ]]></description>
+    <description><![CDATA[<p>Llama 3.1 was released with an expanded context window length of 128K.<br>
+This is great for RAG applications.  Here I feed into the prompt lyrics pulled from some popular rappers, and have the model generate new lyrics in the same style.</p>
+<p>The lyrics are stored in D1 so the lyrics generation happens server side.</p>
+<p>The <em>RAG</em> part embeds the topic to filter down the sample example lyrics.</p>
+<style>
+
+    .dropdown_button {
+        background-color: #1e7d0f;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+    }
+   .dropdown_button:hover, .dropbtn:focus {
+        background-color: #157b05bb;
+    }
+
+    .artists {
+        display: none;
+        position: absolute;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .artists li {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        list-style: none;
+        background-color: rgb(47, 47, 47);
+    
+    }
+
+    .artists li a {
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+    }
+
+    .artists li:hover {
+        background-color: #420d50df;
+    }
+
+    .select_button {
+        color: #bae1b3;
+        background-color: #1e7d0f;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+        text-align-last: center;
+    }
+
+    .select_button:hover, .select_button:focus {
+        background-color: #40b02f;
+    }
+
+    .lyric_button {
+        color: #bae1b3;
+        background-color: #2f0c98;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+    }
+   .lyric_button:hover, .lyric_button:focus {
+        background-color: #6346bc;
+    }
+
+</style>
+
+
+
+<select id="myDropdown", class="select_button">
+    <option value="Gucci Mane">Gucci Mane</option>
+    <option value="Rick Ross">Rick Ross</option>
+    <option value="Drake">Drake</option>
+    <option value="Future">Future</option>
+    <option value="Pop Smoke">Pop Smoke</option>
+    <option value="Lil Baby">Lil Baby</option>
+    <option value="Meek Mill">Meek Mill</option>
+    <option value="21 Savage">21 Savage</option>
+</select>
+  
+<script>
+    const dropdown = document.getElementById("myDropdown");
+
+    dropdown.addEventListener("change", () => {
+        const selectedValue = dropdown.value;
+        console.log("Selected value:", selectedValue);
+    });
+
+</script>
+
+<br><br>
+
+Enter Topic / Theme / Subject area for songs:
+<textarea rows="1" id="topic" style="display:table-cell; width:100%"></textarea>
+
+<br><br>
+
+<button id="generate", onclick="generateLyrics()", class="lyric_button">Generate Lyrics</button>
+
+<script>
+
+  async function generateLyrics() {
+  
+  var selectedArtist = dropdown.value;
+  var topicValue = document.getElementById('topic').value;
+
+  document.getElementById('output').innerHTML = "";
+  
+  console.log("Generate Lyrics for: ", selectedArtist)
+  
+  const params = new URLSearchParams({ userArtist: selectedArtist, userTopic: topicValue }).toString();
+  
+  console.log(params)
+
+  const source = new EventSource("https://workers-rag-genius.deonarine.workers.dev/?"+params); 
+  source.onmessage = (event) => {
+    if (event.data == "[DONE]") {
+      source.close();
+      return;
+    }
+    const data = JSON.parse(event.data);
+    
+    document.getElementById('output').innerHTML += data.response;
+  }
+
+  }
+
+</script>
+
+<br><br>  
+
+<textarea rows="15" id="output" style="display:table-cell; width:100%; white-space:pre-line;"></textarea>]]></description>
 </item>
 <item>
     <title>Deepseek Code</title>
     <link>http://localhost:1313/posts/deepseek-code/</link>
     <pubDate>Wed, 14 Feb 2024 09:09:39 -0500</pubDate>
-    <author>Ajay Deonarine</author>
+    <author>Author</author>
     <guid>http://localhost:1313/posts/deepseek-code/</guid>
-    <description><![CDATA[DeepSeek Coder is composed of a series of code language models, each trained from scratch on 2T tokens. This is a 6.7B model version.
-Supported languages: ['ada', 'agda', 'alloy', 'antlr', 'applescript', 'assembly', 'augeas', 'awk', 'batchfile', 'bluespec', 'c', 'c-sharp', 'clojure', 'cmake', 'coffeescript', 'common-lisp', 'cpp', 'css', 'cuda', 'dart', 'dockerfile', 'elixir', 'elm', 'emacs-lisp', 'erlang', 'f-sharp', 'fortran', 'glsl', 'go', 'groovy', 'haskell', 'html', 'idris', 'isabelle', 'java', 'java-server-pages', 'javascript', 'json', 'julia', 'jupyter-notebook', 'kotlin', 'lean', 'literate-agda', 'literate-coffeescript', 'literate-haskell', 'lua', 'makefile', 'maple', 'markdown', 'mathematica', 'matlab', 'ocaml', 'pascal', 'perl', 'php', 'powershell', 'prolog', 'protocol-buffer', 'python', 'r', 'racket', 'restructuredtext', 'rmarkdown', 'ruby', 'rust', 'sas', 'scala', 'scheme', 'shell', 'smalltalk', 'solidity', 'sparql', 'sql', 'stan', 'standard-ml', 'stata', 'systemverilog', 'tcl', 'tcsh', 'tex', 'thrift', 'typescript', 'verilog', 'vhdl', 'visual-basic', 'xslt', 'yacc', 'yaml', 'zig']]]></description>
+    <description><![CDATA[<p><a href="https://github.com/deepseek-ai/DeepSeek-Coder" target="_blank" rel="noopener noreffer ">DeepSeek Coder</a> is composed of a series of code language models, each trained from scratch on 2T tokens.
+This is a 6.7B model version.</p>
+<p>Supported languages:
+<code>['ada', 'agda', 'alloy', 'antlr', 'applescript', 'assembly', 'augeas', 'awk', 'batchfile', 'bluespec', 'c', 'c-sharp', 'clojure', 'cmake', 'coffeescript', 'common-lisp', 'cpp', 'css', 'cuda', 'dart', 'dockerfile', 'elixir', 'elm', 'emacs-lisp', 'erlang', 'f-sharp', 'fortran', 'glsl', 'go', 'groovy', 'haskell', 'html', 'idris', 'isabelle', 'java', 'java-server-pages', 'javascript', 'json', 'julia', 'jupyter-notebook', 'kotlin', 'lean', 'literate-agda', 'literate-coffeescript', 'literate-haskell', 'lua', 'makefile', 'maple', 'markdown', 'mathematica', 'matlab', 'ocaml', 'pascal', 'perl', 'php', 'powershell', 'prolog', 'protocol-buffer', 'python', 'r', 'racket', 'restructuredtext', 'rmarkdown', 'ruby', 'rust', 'sas', 'scala', 'scheme', 'shell', 'smalltalk', 'solidity', 'sparql', 'sql', 'stan', 'standard-ml', 'stata', 'systemverilog', 'tcl', 'tcsh', 'tex', 'thrift', 'typescript', 'verilog', 'vhdl', 'visual-basic', 'xslt', 'yacc', 'yaml', 'zig']</code></p>]]></description>
 </item>
 <item>
     <title>Mistral Demo</title>
     <link>http://localhost:1313/posts/mistral-demo/</link>
     <pubDate>Wed, 13 Dec 2023 13:39:18 -0500</pubDate>
-    <author>Ajay Deonarine</author>
+    <author>Author</author>
     <guid>http://localhost:1313/posts/mistral-demo/</guid>
-    <description><![CDATA[Here&rsquo;s a demo of the Minstral Instruct 7B model (Mistral-7B-v0.1-instruct). This model outperforms all 13B models and many 34B models.
-First enter an Instruct
-Some examples are:
-you are a friendly assistant you are a empathetic therapist you are a shopping assistant There doesn&rsquo;t seem to be strong guardrails on it, so this works too:
-you are a psychotic killer Enter Instruct: Enter Prompt: EventSource doesn&rsquo;t support POST so I wrapped the prompt and instruct into the URL params as a GET]]></description>
+    <description><![CDATA[<p>Here&rsquo;s a demo of the Minstral Instruct 7B model (Mistral-7B-v0.1-instruct).
+This model outperforms all 13B models and many 34B models.</p>
+<p>First enter an <em><strong>Instruct</strong></em><br>
+Some examples are:</p>
+<ul>
+<li>you are a friendly assistant</li>
+<li>you are a empathetic therapist</li>
+<li>you are a shopping assistant</li>
+</ul>
+<p>There doesn&rsquo;t seem to be strong guardrails on it, so this works too:</p>
+<ul>
+<li>you are a psychotic killer</li>
+</ul>
+<br><br>
+
+<form onsubmit="submitPrompt();return false" id="text_input">
+      Enter Instruct:
+      <textarea rows="1" id="user_instruct" style="display:table-cell; width:100%"></textarea>
+      <br><br>  
+       Enter Prompt: <br>
+      <textarea rows="7" id="user_input" style="display:table-cell; width:100%"></textarea>
+      <br><br>  
+      <input type="submit" value="Fetch Result">
+    </form> 
+
+<script>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  async function submitPrompt() {
+  
+  var user_input = document.getElementById('user_input');
+  var user_instruct = document.getElementById('user_instruct');
+  document.getElementById('output').innerHTML = "";
+  
+  console.log(user_input.value)
+  
+  
+  
+
+  
+
+  let url = new URL("https://workers-mistral.deonarine.workers.dev/");
+  const params = new URLSearchParams({ user_input: user_input.value, user_instruct: user_instruct.value }).toString();
+  
+  console.log(params)
+
+  const source = new EventSource("https://workers-mistral.deonarine.workers.dev?"+params); 
+  source.onmessage = (event) => {
+    if (event.data == "[DONE]") {
+      source.close();
+      return;
+    }
+    const data = JSON.parse(event.data);
+    console.log(data.response)
+    document.getElementById('output').innerHTML += data.response;
+  }
+
+  
+
+  }
+
+</script>
+
+<br><br>  
+
+<textarea rows="10" id="output" style="display:table-cell; width:100%; white-space:pre-line;"></textarea>
+<p><code>EventSource</code> doesn&rsquo;t support <code>POST</code> so I wrapped the prompt and instruct into the URL params as a <code>GET</code><br>
+That feels fragile and dangerous, but provides the cool text streaming, which is good enough for demo purposes.</p>]]></description>
 </item>
 <item>
     <title>Reverse Dictionary</title>
     <link>http://localhost:1313/posts/reverse-dictionary/</link>
     <pubDate>Sun, 29 Oct 2023 17:24:56 -0400</pubDate>
-    <author>Ajay Deonarine</author>
+    <author>Author</author>
     <guid>http://localhost:1313/posts/reverse-dictionary/</guid>
-    <description><![CDATA[One of the more interesting by products of LLMs is the embedding vector. I read awhile back about others using embedding vectors to create reverse dictionaries.
-I think it&rsquo;s a great demonstration of the power and function of these embeddings. I decided to try my own hand at it, using Cloudflare&rsquo;s vector database, I made my own &ldquo;reverse dictionary&rdquo; or semantic thesaurus.
-I sourced some word / definition lists Pre-embed the definitions to a 1024 dim vector Used D1 to store my words and Vectorize as my vector database I embed the inputs at my endpoint and retrieve the cosine similar results The vector DB runs the (approximate) nearest neighbors search, which is non-trivial, and surprisingly fast You can input anything, a definition, collections of feelings, a paragraph, a poem, and the results will be some words that best match that semantic meaning.]]></description>
+    <description><![CDATA[<p>One of the more interesting by products of LLMs is the embedding vector.  I read awhile back about others using embedding vectors to create reverse dictionaries.</p>
+<p>I think it&rsquo;s a great demonstration of the power and function of these embeddings.  I decided to try my own hand at it, using Cloudflare&rsquo;s vector database, I made my own &ldquo;reverse dictionary&rdquo; or semantic thesaurus.</p>
+<ul>
+<li>I sourced some word / definition lists</li>
+<li>Pre-embed the definitions to a <a href="https://huggingface.co/BAAI/bge-large-en-v1.5" target="_blank" rel="noopener noreffer ">1024 dim vector</a></li>
+<li>Used <a href="https://developers.cloudflare.com/d1/" target="_blank" rel="noopener noreffer ">D1</a> to store my words and <a href="https://developers.cloudflare.com/vectorize/" target="_blank" rel="noopener noreffer ">Vectorize</a> as my vector database</li>
+<li>I embed the inputs at my endpoint and retrieve the cosine similar results</li>
+<li>The vector DB runs the (approximate) nearest neighbors search, which is non-trivial, and surprisingly fast</li>
+</ul>
+<hr>
+<p>You can input anything, a definition, collections of feelings, a paragraph, a poem, and the results will be some words that best match that semantic meaning.</p>]]></description>
 </item>
 <item>
     <title>LLMs at the Edge</title>
     <link>http://localhost:1313/posts/llm-edge/</link>
     <pubDate>Mon, 16 Oct 2023 14:46:33 -0400</pubDate>
-    <author>Ajay Deonarine</author>
+    <author>Author</author>
     <guid>http://localhost:1313/posts/llm-edge/</guid>
-    <description><![CDATA[Been playing with Cloudflare&rsquo;s AI Workers. One can set up a LLM deployed on their CDN, which leads to some pretty fast response times.
-This is a 7B Llama 2 model. Don&rsquo;t worry, I&rsquo;m not logging / saving any queries. 😉
-Enter Prompt: You can also curl directly to my endpoint:
-curl -X POST https://ai.deonarine.com/ -d &#39;{&#34;prompt&#34;:&#34;Write a poem that talks about Brooklyn&#34;}&#39; Technically the API endpoint is a different origin than this website.]]></description>
+    <description><![CDATA[<p>Been playing with Cloudflare&rsquo;s AI Workers.
+One can set up a LLM deployed on their CDN, which leads to some pretty fast response times.</p>
+<p>This is a 7B Llama 2 model.  Don&rsquo;t worry, I&rsquo;m not logging / saving any queries.
+😉</p>
+<form onsubmit="submitPrompt();return false" id="text_input">
+      Enter Prompt: <br>
+      <textarea rows="7" id="user_input" style="display:table-cell; width:100%"></textarea>
+      <br><br>  
+      <input type="submit" value="Fetch Result">
+    </form> 
+
+
+<script>
+
+  async function getData(url = "") {
+    
+    const response = await fetch(url, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    console.log(response)
+    
+    
+    
+    
+    const getDataRes = await response.json();
+    document.getElementById('output').innerHTML =  JSON.stringify(getDataRes.response, null, 4);
+
+  }
+
+  async function getCF() {
+  
+  const content = await getData("https://ai.deonarine.com");
+  
+  
+
+  }
+
+  async function postData(url = "", data = {}) {
+    console.log(JSON.stringify(data));
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
+    });
+    
+    const postDataRes = await response.json();
+    
+    const stripQuotes = val => val.replace(/"/g, "");
+    
+    document.getElementById('output').innerHTML =  stripQuotes(postDataRes.response);
+
+  }
+
+  async function submitPrompt() {
+  
+  var user_prompt = document.getElementById('user_input');
+  const content = await postData("https://ai.deonarine.com", { prompt: user_prompt.value });
+
+  }
+
+</script>
+
+<br><br>  
+
+<textarea rows="7" id="output" style="display:table-cell; width:100%; white-space:pre-line;"></textarea>
+<p>You can also curl directly to my endpoint:</p>]]></description>
 </item>
 <item>
     <title>Cloudflare Jamstack</title>
     <link>http://localhost:1313/posts/cloudflare-jamstack/</link>
     <pubDate>Wed, 04 Oct 2023 17:58:14 -0400</pubDate>
-    <author>Ajay Deonarine</author>
+    <author>Author</author>
     <guid>http://localhost:1313/posts/cloudflare-jamstack/</guid>
-    <description><![CDATA[Jamstack Playing with Cloudflare&rsquo;s Jamstack setup. Basically having my static site, but with dynamic content.
-The CF variables give lots of fun details about the vistor.]]></description>
+    <description><![CDATA[<h2 id="jamstack">Jamstack</h2>
+<p>Playing with Cloudflare&rsquo;s <a href="https://www.cloudflare.com/learning/performance/what-is-jamstack/" target="_blank" rel="noopener noreffer ">Jamstack</a> setup.
+Basically having my static site, but with dynamic content.</p>
+<p>The <a href="https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties" target="_blank" rel="noopener noreffer ">CF variables</a> give lots of fun details about the vistor.</p>
+<html>
+  <head>
+    <script type="text/javascript">
+      async function showCF(url = "https://cf.deonarine.com") {
+        
+        const response = await fetch(url, {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });
+        console.log(response)
+        const getDataRes = await response.json();
+        document.getElementById('output').innerHTML =  JSON.stringify(getDataRes, null, 4);
+
+      }
+    </script>
+  </head>
+  <body onload="showCF()">
+    <textarea rows="30" id="output" style="display:table-cell; width:100%; white-space:pre-line;"></textarea>
+  </body>
+</html>]]></description>
 </item>
 <item>
     <title>Python Apple Silicon</title>
     <link>http://localhost:1313/posts/python-apple-silicon/</link>
     <pubDate>Thu, 21 Sep 2023 11:28:31 -0400</pubDate>
-    <author>Ajay Deonarine</author>
+    <author>Author</author>
     <guid>http://localhost:1313/posts/python-apple-silicon/</guid>
-    <description><![CDATA[Install x86 dependencies Once you have the shell shortcuts, we can brew install x86 or arm libraries, since they reside in different locations
-Switch to the intel shell and brew86 install the required libraries
-libs=&#34;openssl readline sqlite3 xz zlib gettext&#34; for lib in ${=libs}; do brew86 install $lib done Next, set the compiler and linker flags realine is keg only brew86 info readline
-For compilers to find readline you may need to set: export LDFLAGS=&quot;-L/usr/local/opt/readline/lib&quot; export CPPFLAGS=&quot;-I/usr/local/opt/readline/include&quot;]]></description>
+    <description><![CDATA[<h2 id="install-x86-dependencies">Install x86 dependencies</h2>
+<p>Once you have the shell shortcuts, we can brew install x86 or arm libraries, since they reside in different locations</p>
+<p>Switch to the <code>intel</code> shell and <code>brew86 install</code> the required libraries</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>libs<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;openssl readline sqlite3 xz zlib gettext&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> lib in <span style="color:#e6db74">${</span>=libs<span style="color:#e6db74">}</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>brew86 install $lib
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>Next, set the compiler and linker flags
+realine is keg only <code>brew86 info readline</code></p>
+<p>For compilers to find readline you may need to set:
+<code>export LDFLAGS=&quot;-L/usr/local/opt/readline/lib&quot;</code>
+<code>export CPPFLAGS=&quot;-I/usr/local/opt/readline/include&quot;</code></p>]]></description>
 </item>
 <item>
     <title>x86 Shell</title>
     <link>http://localhost:1313/posts/x86-shell/</link>
     <pubDate>Thu, 21 Sep 2023 10:31:38 -0400</pubDate>
-    <author>Ajay Deonarine</author>
+    <author>Author</author>
     <guid>http://localhost:1313/posts/x86-shell/</guid>
-    <description><![CDATA[Setup shell shortcuts You can easily switch to an x86 shell on apple silicon by
-arch -x86_64 zsh Then check the arch
-ajay@Ajays-MacBook-Pro ~ % arch -x86_64 zsh ajay@Ajays-MacBook-Pro ~ % arch i386 As a shortcut, I can switch between x86 or apple silicon terminal editing .zshrc
-alias arm=&#34;env /usr/bin/arch -arm64 /bin/zsh --login&#34; alias intel=&#34;env /usr/bin/arch -x86_64 /bin/zsh --login&#34; Then run arch specifc versions of homebrew or pyenv
-alias brew86=&#34;/usr/local/bin/brew&#34; alias pyenv86=&#34;arch -x86_64 pyenv&#34; You may need to resource the shell after changing source ~/.]]></description>
+    <description><![CDATA[<h2 id="setup-shell-shortcuts">Setup shell shortcuts</h2>
+<p>You can easily switch to an x86 shell on apple silicon by</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>arch -x86_64 zsh
+</span></span></code></pre></div><p>Then check the arch</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>ajay@Ajays-MacBook-Pro ~ % arch -x86_64 zsh
+</span></span><span style="display:flex;"><span>ajay@Ajays-MacBook-Pro ~ % arch
+</span></span><span style="display:flex;"><span>i386
+</span></span></code></pre></div><p>As a shortcut, I can switch between x86 or apple silicon terminal editing .zshrc</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>alias arm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;env /usr/bin/arch -arm64 /bin/zsh --login&#34;</span>
+</span></span><span style="display:flex;"><span>alias intel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;env /usr/bin/arch -x86_64 /bin/zsh --login&#34;</span>
+</span></span></code></pre></div><p>Then run arch specifc versions of homebrew or pyenv</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>alias brew86<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/local/bin/brew&#34;</span>
+</span></span><span style="display:flex;"><span>alias pyenv86<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;arch -x86_64 pyenv&#34;</span>
+</span></span></code></pre></div><p>You may need to resource the shell after changing <code>source ~/.zshrc</code></p>]]></description>
 </item>
 </channel>
 </rss>

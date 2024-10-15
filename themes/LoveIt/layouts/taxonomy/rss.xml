@@ -15,14 +15,6 @@
                 {{- . -}}
             </language>
         {{- end -}}
-        {{- with .Site.Author.email -}}
-            <managingEditor>
-                {{- . }}{{ with $.Site.Author.name }} ({{ . }}){{ end -}}
-            </managingEditor>
-            <webMaster>
-                {{- . }}{{ with $.Site.Author.name }} ({{ . }}){{ end -}}
-            </webMaster>
-        {{- end -}}
         {{- with .Site.Copyright -}}
             <copyright>
                 {{- . -}}
